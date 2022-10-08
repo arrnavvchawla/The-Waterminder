@@ -1,0 +1,22 @@
+#include <ESP8266WiFi.h>
+#include "Adafruit_MQTT.h"
+#include "Adafruit_MQTT_Client.h"
+
+/************************* WiFi Access Point *********************************/
+
+#define WLAN_SSID       "Arrnavv" //your wifi ssid
+#define WLAN_PASS       "password" //your wifi password
+
+/************************* Adafruit.io Setup *********************************/
+
+#define AIO_SERVER      "io.adafruit.com"
+#define AIO_SERVERPORT  1883                   // use 8883 for SSL
+#define AIO_USERNAME    "thearrnavvchawla" //your adafruit username
+#define AIO_KEY         "aio_aRkH16MxfJyCmgf6P5RBvmhPfqx0" //your adafruit key
+
+/************ Global State (you don't need to change this!) ******************/
+WiFiClient client;
+Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY);
+
+
+Adafruit_MQTT_Publish  publishValue= Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/waterdetect");
